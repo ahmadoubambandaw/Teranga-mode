@@ -109,6 +109,16 @@ const prods = [
    imgs:['images/sac-rond-paille.jpg'], badge:'sale',
    colors:['#C9A96E','#6B4226'], stars:4.5, rev:48,
    desc:"Sac rond en paille tressée avec finitions cuir marron et bandoulière. Esprit estival et naturel, format compact idéal plage ou ville. Indémodable."},
+
+  {id:20, name:'Lunettes Aviateur Oval Gold', cat:'Lunettes', price:4500, old:null, stock:2,
+   imgs:['images/lunettes-aviateur-or-1.jpg','images/lunettes-aviateur-or-2.jpg','images/lunettes-aviateur-or-3.jpg'], badge:'new',
+   colors:['#D4AF37'], stars:4.8, rev:6,
+   desc:"Lunettes aviateur ovales monture entièrement dorée, verres teintés ambrés légèrement rosés. Ultra légères et confortables. Look glamour et raffiné, réf. Astou."},
+
+  {id:21, name:'Lunettes Square Rouge Oversize', cat:'Lunettes', price:3500, old:null, stock:2,
+   imgs:['images/lunettes-square-rouge-1.jpg','images/lunettes-square-rouge-2.jpg'], badge:'new',
+   colors:['#8B0000','#6B4226'], stars:4.7, rev:4,
+   desc:"Grande monture carrée oversize rouge bordeaux avec détails écaille et charnières dorées. Verres légèrement teintés rosés. Style bold et fashion pour un regard qui marque."},
 ];
 
 const cats = [
