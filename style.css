@@ -1062,25 +1062,56 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
 @media(max-width:640px){
   .annonce{gap:1.2rem;font-size:9.5px}
   .ann-div{display:none}
-  .header-inner{padding:0 1.2rem;gap:1.5rem}
-  .hero{height:85vh;min-height:520px}
-  .slide-content{padding:0 1.5rem}
-  .slide-title{font-size:2.6rem}
-  .slide-ctas{flex-direction:column}
+  .header-inner{padding:0 1.2rem;gap:1rem;height:64px}
+  .logo-badge{width:36px;height:36px}
+  .logo-name{font-size:15px;letter-spacing:.08em}
+  .nav-icons{gap:.9rem}
+  .hero{height:85vh;min-height:480px}
+  .slide-content{padding:0 1.2rem}
+  .slide-title{font-size:2.1rem;max-width:100%}
+  .slide-sub{font-size:13px;margin-bottom:1.6rem}
+  .slide-ctas{flex-direction:column;gap:10px}
+  .slide-ctas .btn{width:100%;justify-content:center}
   .slide-arr{display:none}
-  .sec{padding:4rem 1.5rem}
-  .toolbar{padding-left:1.5rem;padding-right:1.5rem}
-  .pgrid{grid-template-columns:repeat(2,1fr);gap:0;padding:0 0 4rem}
+  .sec{padding:3rem 1.2rem}
+  .sec-h{font-size:1.8rem}
+  .toolbar{padding:1rem 1.2rem 0;flex-direction:column;align-items:flex-start;gap:.7rem}
+  .filter-chips{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;width:100%}
+  .pgrid{grid-template-columns:repeat(2,1fr);gap:0;padding:0 0 3rem}
+  .pcname{font-size:15px}
+  .pcinfo{padding:.9rem .9rem 1.2rem}
+  .pcprice{margin-bottom:.6rem}
+  .trust-inner{grid-template-columns:repeat(2,1fr)}
+  .trust-item{padding:1.6rem 1rem}
+  .ti-icon{font-size:20px;margin-bottom:.4rem}
   .val-grid{grid-template-columns:1fr}
-  .cat-row{gap:1.4rem}
-  .cat-circle .cc-img{width:80px;height:80px}
-  .about-text{padding:2.5rem 1.5rem}
+  .cat-row{gap:1.2rem}
+  .cat-circle .cc-img{width:75px;height:75px}
+  .about-img{height:240px}
+  .about-text{padding:2rem 1.2rem}
+  .abt-h{font-size:1.9rem}
+  .abt-p{font-size:13px}
+  .abt-stats{gap:1.2rem;flex-wrap:wrap}
+  .abt-stat-num{font-size:24px}
   .nl-form{flex-direction:column;border-radius:4px}
   .nl-form input,.nl-form button{width:100%}
-  .foot-inner{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr;gap:2rem}
   .foot-bottom{flex-direction:column;text-align:center}
   .wrow2{grid-template-columns:1fr}
-  .abt-stats{gap:1.5rem}
+  .cform{padding:1.4rem}
+  .contact-infos{gap:.9rem}
+  #pmbox{border-radius:0}
+  .pmcontent{padding:1.4rem}
+  .pmname{font-size:18px}
+  .pmsizes{gap:5px}
+  .wbox{padding:1.4rem;border-radius:4px}
+}
+@media(max-width:400px){
+  .pgrid{grid-template-columns:1fr}
+  .trust-inner{grid-template-columns:1fr}
+  .slide-title{font-size:1.8rem}
+  .cat-circle .cc-img{width:64px;height:64px}
+  .cat-circle .cc-name{font-size:10px}
 }
 
 /* ═══════════════════════════════════════════════════════════════
