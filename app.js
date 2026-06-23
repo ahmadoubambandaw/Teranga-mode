@@ -119,6 +119,16 @@ const prods = [
    imgs:['images/lunettes-square-rouge-1.jpg','images/lunettes-square-rouge-2.jpg'], badge:'new',
    colors:['#8B0000','#6B4226'], stars:4.7, rev:4,
    desc:"Grande monture carrée oversize rouge bordeaux avec détails écaille et charnières dorées. Verres légèrement teintés rosés. Style bold et fashion pour un regard qui marque."},
+
+  {id:22, name:'Lunettes Red Frame', cat:'Lunettes', price:3000, old:null, stock:1,
+   imgs:['images/lunettes-red-frame.jpg'], badge:'hot',
+   colors:['#8B0000'], stars:4.6, rev:9,
+   desc:"Lunettes de soleil oversize monture bordeaux brillante avec pont argenté signature. Verres dégradés teintés rosés, protection UV400. Look statement et audacieux."},
+
+  {id:23, name:'Lunettes Men Square', cat:'Lunettes', price:3000, old:null, stock:3,
+   imgs:['images/lunettes-men-square.jpg'], badge:'new',
+   colors:['#1C1C1C'], stars:4.7, rev:11,
+   desc:"Lunettes carrées noires style premium, monture épaisse et verres fumés miroir. Allure urbaine et sophistiquée. Unisexe — parfaites pour hommes et femmes."},
 ];
 
 const cats = [
