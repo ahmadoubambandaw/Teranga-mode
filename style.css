@@ -1054,7 +1054,8 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
   .info-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
   #pmbox{grid-template-columns:1fr}
-  #pmimgs{aspect-ratio:4/3}
+  #pmimgs{aspect-ratio:auto;height:44vw;min-height:220px;max-height:320px}
+  .pmgal-main{aspect-ratio:auto}
   .foot-inner{grid-template-columns:1fr 1fr}
   .pgrid{grid-template-columns:repeat(2,1fr);padding:0 1.5rem 4rem}
   .trust-inner{grid-template-columns:repeat(2,1fr)}
@@ -1100,7 +1101,10 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
   .wrow2{grid-template-columns:1fr}
   .cform{padding:1.4rem}
   .contact-infos{gap:.9rem}
-  #pmbox{border-radius:0}
+  #pmod{padding:0;align-items:flex-end}
+  #pmbox{width:100%;max-height:90vh;border-radius:12px 12px 0 0}
+  #pmimgs{height:52vw;min-height:180px;max-height:240px}
+  .pmgal-main{aspect-ratio:auto}
   .pmcontent{padding:1.4rem}
   .pmname{font-size:18px}
   .pmsizes{gap:5px}
