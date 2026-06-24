@@ -512,7 +512,10 @@
       <div class="freeship" id="fsmsg"></div>
       <div id="crowsarea"></div>
       <div class="cfoot-btns">
-        <button class="btn btn-dark" onclick="openWave()">Payer avec Wave</button>
+        <div class="pay-row">
+          <button class="btn btn-wave" onclick="openWave()">〽️ Wave</button>
+          <button class="btn btn-om" onclick="openOM()">🟠 Orange Money</button>
+        </div>
         <button class="btn btn-wa" onclick="sendWA()">💬 Commander sur WhatsApp</button>
       </div>
     </div>
@@ -533,10 +536,15 @@
   <div class="wbox">
     <div class="wbox-head"><h3>Paiement Wave</h3><button class="wclose" onclick="closeWave()">✕</button></div>
     <div id="wrecap"></div>
+    <div class="pay-banner">
+      <div class="pb-label">〽️ Envoie le total sur Wave au</div>
+      <div class="pb-num">77 539 95 84</div>
+      <div class="pb-name">Teranga Shein</div>
+    </div>
     <div class="fg"><label>Prénom &amp; Nom</label>
       <div class="wrow2"><input type="text" id="wfn" placeholder="Prénom"><input type="text" id="wln" placeholder="Nom"></div>
     </div>
-    <div class="fg"><label>Numéro Wave</label><input type="tel" id="wph" placeholder="77 000 00 00"></div>
+    <div class="fg"><label>Ton numéro Wave (confirmation)</label><input type="tel" id="wph" placeholder="77 000 00 00"></div>
     <div class="fg"><label>Adresse de livraison</label><input type="text" id="wadr" placeholder="Quartier, rue, numéro..."></div>
     <div class="fg"><label>Ville</label>
       <select id="wcit">
@@ -547,6 +555,33 @@
       </select>
     </div>
     <button id="wsubbtn" onclick="processWave()">Confirmer le paiement</button>
+  </div>
+</div>
+
+<!-- ORANGE MONEY CHECKOUT -->
+<div id="ommod">
+  <div class="wbox">
+    <div class="wbox-head"><h3>🟠 Orange Money</h3><button class="wclose" onclick="closeOM()">✕</button></div>
+    <div id="omrecap"></div>
+    <div class="pay-banner om">
+      <div class="pb-label">🟠 Envoie le total sur Orange Money au</div>
+      <div class="pb-num">77 539 95 84</div>
+      <div class="pb-name">Teranga Shein</div>
+    </div>
+    <div class="fg"><label>Prénom &amp; Nom</label>
+      <div class="wrow2"><input type="text" id="omfn" placeholder="Prénom"><input type="text" id="omln" placeholder="Nom"></div>
+    </div>
+    <div class="fg"><label>Ton numéro Orange Money (confirmation)</label><input type="tel" id="omph" placeholder="77 000 00 00"></div>
+    <div class="fg"><label>Adresse de livraison</label><input type="text" id="omadr" placeholder="Quartier, rue, numéro..."></div>
+    <div class="fg"><label>Ville</label>
+      <select id="omcit">
+        <option>Dakar Centre</option><option>Plateau</option><option>Medina</option>
+        <option>Grand Yoff</option><option>Parcelles Assainies</option>
+        <option>Guédiawaye</option><option>Pikine</option>
+        <option>Rufisque</option><option>Thiaroye</option><option>Autre</option>
+      </select>
+    </div>
+    <button id="omsubbtn" onclick="processOM()">Confirmer le paiement</button>
   </div>
 </div>
 

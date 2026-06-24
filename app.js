@@ -3,6 +3,8 @@
    ═══════════════════════════════════════════════════════════════ */
 
 const WA = '221775399584';
+const WAVE_NUM = '77 539 95 84';
+const OM_NUM   = '77 539 95 84';
 
 /* ─── DONNÉES PRODUITS (catalogue réel) ─── */
 /*
@@ -487,6 +489,40 @@ async function processWave() {
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   cart=[]; saveCart(); updCart();
 }
+/* ════════════════════════════════════════════
+   ORANGE MONEY
+   ════════════════════════════════════════════ */
+function openOM() { if(!cart.length){toast('Panier vide !');return;} closeCart(); renderOMrecap(); document.getElementById('ommod').classList.add('on'); document.body.style.overflow='hidden'; }
+function closeOM() { document.getElementById('ommod').classList.remove('on'); document.body.style.overflow=''; }
+function renderOMrecap() {
+  const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
+  document.getElementById('omrecap').innerHTML = `
+    <div class="recap-t">📋 Récapitulatif</div>
+    ${cart.map(i=>`<div class="ri"><span>${i.name} ×${i.qty}</span><span>${(i.price*i.qty).toLocaleString('fr-FR')} FCFA</span></div>`).join('')}
+    <div class="rtotal"><span>TOTAL</span><span>${sub.toLocaleString('fr-FR')} FCFA</span></div>`;
+}
+async function processOM() {
+  const fn=document.getElementById('omfn').value.trim(), ln=document.getElementById('omln').value.trim();
+  const ph=document.getElementById('omph').value.trim(), adr=document.getElementById('omadr').value.trim();
+  const cit=document.getElementById('omcit').value;
+  if(!fn||!ln){alert('Veuillez entrer votre prénom et nom.');return;}
+  if(!ph){alert('Veuillez entrer votre numéro Orange Money.');return;}
+  if(!adr){alert('Veuillez entrer votre adresse de livraison.');return;}
+  const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);
+  const btn=document.getElementById('omsubbtn');
+  btn.classList.add('loading'); btn.textContent='⏳ Traitement...';
+  await new Promise(r=>setTimeout(r,1800));
+  btn.classList.remove('loading'); btn.textContent='Confirmer le paiement';
+  closeOM();
+  document.getElementById('succmsg').innerHTML = `Merci <b>${fn} ${ln}</b> !<br>Commande de <b>${sub.toLocaleString('fr-FR')} FCFA</b> enregistrée.<br><br>📦 Livraison : <b>${adr}, ${cit}</b><br>📱 Orange Money : <b>${ph}</b><br><br>Notre équipe vous contacte sous 30 min.`;
+  document.getElementById('succmod').classList.add('on');
+  let msg=`🆕 *COMMANDE ORANGE MONEY — TERANGA SHEIN*\n━━━━━━━━━━━━━━━━━━━━\n👤 ${fn} ${ln}\n📞 OM: ${ph}\n📍 ${adr}, ${cit}\n\n`;
+  cart.forEach(i=>msg+=`• ${i.name} ×${i.qty} = ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n`);
+  msg+=`\n🟠 TOTAL: ${sub.toLocaleString('fr-FR')} FCFA`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+  cart=[]; saveCart(); updCart();
+}
+
 function sendWA() {
   if(!cart.length){toast('Panier vide !');return;}
   const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);

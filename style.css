@@ -831,6 +831,11 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
 }
 .cfoot-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
 .cfoot-btns .btn{width:100%;justify-content:center}
+.pay-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-wave{background:var(--wave);color:#fff;border:none}
+.btn-wave:hover{filter:brightness(1.1)}
+.btn-om{background:#FF6600;color:#fff;border:none}
+.btn-om:hover{filter:brightness(1.1)}
 
 /* Product modal */
 #pmod{
@@ -947,6 +952,39 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
 }
 #wsubbtn:hover{filter:brightness(1.1)}
 #wsubbtn.loading{opacity:.7;cursor:not-allowed}
+
+/* Orange Money modal */
+#ommod{
+  position:fixed;inset:0;background:rgba(26,20,16,.6);
+  z-index:950;display:flex;align-items:center;
+  justify-content:center;padding:1.5rem;
+  opacity:0;pointer-events:none;transition:.3s
+}
+#ommod.on{opacity:1;pointer-events:auto}
+#omsubbtn{
+  width:100%;padding:15px;background:#FF6600;color:#fff;
+  border:none;font-size:11.5px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  border-radius:var(--r);margin-top:.6rem;cursor:pointer;
+  font-family:var(--sans);transition:.2s
+}
+#omsubbtn:hover{filter:brightness(1.1)}
+#omsubbtn.loading{opacity:.7;cursor:not-allowed}
+
+/* Bannière numéro de paiement */
+.pay-banner{
+  background:rgba(30,115,190,.07);
+  border:1.5px solid rgba(30,115,190,.22);
+  border-radius:var(--r);padding:14px 16px;
+  text-align:center;margin-bottom:1.2rem
+}
+.pay-banner.om{
+  background:rgba(255,102,0,.07);
+  border-color:rgba(255,102,0,.28)
+}
+.pb-label{font-size:11px;color:var(--inkmu);margin-bottom:4px}
+.pb-num{font-size:22px;font-weight:700;letter-spacing:.05em;color:var(--ink)}
+.pb-name{font-size:11px;color:var(--inklt);margin-top:2px}
 
 /* Success modal */
 #succmod{
