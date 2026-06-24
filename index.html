@@ -42,6 +42,7 @@
   import { animate, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
   window.motionOne = { animate, stagger, inView };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -534,27 +535,36 @@
 <!-- WAVE CHECKOUT -->
 <div id="wmod">
   <div class="wbox">
-    <div class="wbox-head"><h3>Paiement Wave</h3><button class="wclose" onclick="closeWave()">✕</button></div>
+    <div class="wbox-head"><h3>〽️ Paiement Wave</h3><button class="wclose" onclick="closeWave()">✕</button></div>
     <div id="wrecap"></div>
-    <div class="pay-banner">
-      <div class="pb-label">〽️ Envoie le total sur Wave au</div>
-      <div class="pb-num">77 539 95 84</div>
-      <div class="pb-name">Teranga Shein</div>
+
+    <div class="pay-section">
+      <div class="pay-step-label"><span class="psl-n wave-n">1</span> Envoie le paiement</div>
+      <div class="qr-pay-block">
+        <canvas id="wqr"></canvas>
+        <div class="qr-or">ou</div>
+        <a id="w-open-app" class="btn btn-wave pay-app-btn" href="#" target="_blank">📲 Ouvrir Wave et payer</a>
+        <div class="qr-hint">Scanner le QR avec l'app Wave · montant pré-rempli</div>
+      </div>
     </div>
-    <div class="fg"><label>Prénom &amp; Nom</label>
-      <div class="wrow2"><input type="text" id="wfn" placeholder="Prénom"><input type="text" id="wln" placeholder="Nom"></div>
+
+    <div class="pay-section">
+      <div class="pay-step-label"><span class="psl-n wave-n">2</span> Confirme ta commande</div>
+      <div class="fg"><label>Prénom &amp; Nom</label>
+        <div class="wrow2"><input type="text" id="wfn" placeholder="Prénom"><input type="text" id="wln" placeholder="Nom"></div>
+      </div>
+      <div class="fg"><label>Ton numéro Wave</label><input type="tel" id="wph" placeholder="77 000 00 00"></div>
+      <div class="fg"><label>Adresse de livraison</label><input type="text" id="wadr" placeholder="Quartier, rue, numéro..."></div>
+      <div class="fg"><label>Ville</label>
+        <select id="wcit">
+          <option>Dakar Centre</option><option>Plateau</option><option>Medina</option>
+          <option>Grand Yoff</option><option>Parcelles Assainies</option>
+          <option>Guédiawaye</option><option>Pikine</option>
+          <option>Rufisque</option><option>Thiaroye</option><option>Autre</option>
+        </select>
+      </div>
+      <button id="wsubbtn" onclick="processWave()">✅ J'ai payé — Confirmer la commande</button>
     </div>
-    <div class="fg"><label>Ton numéro Wave (confirmation)</label><input type="tel" id="wph" placeholder="77 000 00 00"></div>
-    <div class="fg"><label>Adresse de livraison</label><input type="text" id="wadr" placeholder="Quartier, rue, numéro..."></div>
-    <div class="fg"><label>Ville</label>
-      <select id="wcit">
-        <option>Dakar Centre</option><option>Plateau</option><option>Medina</option>
-        <option>Grand Yoff</option><option>Parcelles Assainies</option>
-        <option>Guédiawaye</option><option>Pikine</option>
-        <option>Rufisque</option><option>Thiaroye</option><option>Autre</option>
-      </select>
-    </div>
-    <button id="wsubbtn" onclick="processWave()">Confirmer le paiement</button>
   </div>
 </div>
 
@@ -563,25 +573,34 @@
   <div class="wbox">
     <div class="wbox-head"><h3>🟠 Orange Money</h3><button class="wclose" onclick="closeOM()">✕</button></div>
     <div id="omrecap"></div>
-    <div class="pay-banner om">
-      <div class="pb-label">🟠 Envoie le total sur Orange Money au</div>
-      <div class="pb-num">77 539 95 84</div>
-      <div class="pb-name">Teranga Shein</div>
+
+    <div class="pay-section">
+      <div class="pay-step-label"><span class="psl-n om-n">1</span> Envoie le paiement</div>
+      <div class="qr-pay-block">
+        <canvas id="omqr"></canvas>
+        <div class="qr-or">ou</div>
+        <a id="om-open-app" class="btn btn-om pay-app-btn" href="#" target="_blank">📲 Composer le code Orange Money</a>
+        <div class="qr-hint">Scanner le QR avec l'app OM · ou appuie sur le bouton</div>
+      </div>
     </div>
-    <div class="fg"><label>Prénom &amp; Nom</label>
-      <div class="wrow2"><input type="text" id="omfn" placeholder="Prénom"><input type="text" id="omln" placeholder="Nom"></div>
+
+    <div class="pay-section">
+      <div class="pay-step-label"><span class="psl-n om-n">2</span> Confirme ta commande</div>
+      <div class="fg"><label>Prénom &amp; Nom</label>
+        <div class="wrow2"><input type="text" id="omfn" placeholder="Prénom"><input type="text" id="omln" placeholder="Nom"></div>
+      </div>
+      <div class="fg"><label>Ton numéro Orange Money</label><input type="tel" id="omph" placeholder="77 000 00 00"></div>
+      <div class="fg"><label>Adresse de livraison</label><input type="text" id="omadr" placeholder="Quartier, rue, numéro..."></div>
+      <div class="fg"><label>Ville</label>
+        <select id="omcit">
+          <option>Dakar Centre</option><option>Plateau</option><option>Medina</option>
+          <option>Grand Yoff</option><option>Parcelles Assainies</option>
+          <option>Guédiawaye</option><option>Pikine</option>
+          <option>Rufisque</option><option>Thiaroye</option><option>Autre</option>
+        </select>
+      </div>
+      <button id="omsubbtn" onclick="processOM()">✅ J'ai payé — Confirmer la commande</button>
     </div>
-    <div class="fg"><label>Ton numéro Orange Money (confirmation)</label><input type="tel" id="omph" placeholder="77 000 00 00"></div>
-    <div class="fg"><label>Adresse de livraison</label><input type="text" id="omadr" placeholder="Quartier, rue, numéro..."></div>
-    <div class="fg"><label>Ville</label>
-      <select id="omcit">
-        <option>Dakar Centre</option><option>Plateau</option><option>Medina</option>
-        <option>Grand Yoff</option><option>Parcelles Assainies</option>
-        <option>Guédiawaye</option><option>Pikine</option>
-        <option>Rufisque</option><option>Thiaroye</option><option>Autre</option>
-      </select>
-    </div>
-    <button id="omsubbtn" onclick="processOM()">Confirmer le paiement</button>
   </div>
 </div>
 

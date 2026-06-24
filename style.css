@@ -971,20 +971,38 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
 #omsubbtn:hover{filter:brightness(1.1)}
 #omsubbtn.loading{opacity:.7;cursor:not-allowed}
 
-/* Bannière numéro de paiement */
-.pay-banner{
-  background:rgba(30,115,190,.07);
-  border:1.5px solid rgba(30,115,190,.22);
-  border-radius:var(--r);padding:14px 16px;
-  text-align:center;margin-bottom:1.2rem
+/* Payment flow — steps + QR */
+.pay-section{margin-bottom:1.4rem}
+.pay-step-label{
+  display:flex;align-items:center;gap:9px;
+  font-size:11.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--inkmu);margin-bottom:.9rem
 }
-.pay-banner.om{
-  background:rgba(255,102,0,.07);
-  border-color:rgba(255,102,0,.28)
+.psl-n{
+  width:22px;height:22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;flex:none
 }
-.pb-label{font-size:11px;color:var(--inkmu);margin-bottom:4px}
-.pb-num{font-size:22px;font-weight:700;letter-spacing:.05em;color:var(--ink)}
-.pb-name{font-size:11px;color:var(--inklt);margin-top:2px}
+.wave-n{background:var(--wave)}
+.om-n{background:#FF6600}
+.qr-pay-block{
+  display:flex;flex-direction:column;align-items:center;
+  gap:10px;padding:18px;
+  background:var(--bgalt);border-radius:var(--r);
+  border:1px solid var(--line)
+}
+.qr-pay-block canvas{border-radius:6px}
+.qr-or{
+  font-size:10px;color:var(--inklt);text-transform:uppercase;
+  letter-spacing:.08em
+}
+.pay-app-btn{
+  width:100%;justify-content:center;
+  font-size:12px;padding:13px
+}
+.qr-hint{
+  font-size:10.5px;color:var(--inklt);text-align:center;line-height:1.5
+}
 
 /* Success modal */
 #succmod{

@@ -459,14 +459,27 @@ function loadCart() { try { const s=localStorage.getItem('ts_cart'); if(s){cart=
 /* ════════════════════════════════════════════
    WAVE
    ════════════════════════════════════════════ */
-function openWave() { if(!cart.length){toast('Panier vide !');return;} closeCart(); renderWrecap(); document.getElementById('wmod').classList.add('on'); document.body.style.overflow='hidden'; }
+function openWave() {
+  if(!cart.length){toast('Panier vide !');return;}
+  closeCart();
+  const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
+  renderWrecap();
+  const waveLink = `wave://pay?phone=%2B221775399584&amount=${sub}&currency=XOF`;
+  QRCode.toCanvas(document.getElementById('wqr'), waveLink,
+    {width:160, margin:2, color:{dark:'#1C1C1C',light:'#FFFFFF'}},
+    err => { if(err) console.error('QR Wave:', err); }
+  );
+  document.getElementById('w-open-app').href = waveLink;
+  document.getElementById('wmod').classList.add('on');
+  document.body.style.overflow='hidden';
+}
 function closeWave() { document.getElementById('wmod').classList.remove('on'); document.body.style.overflow=''; }
 function renderWrecap() {
   const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
   document.getElementById('wrecap').innerHTML = `
     <div class="recap-t">📋 Récapitulatif</div>
     ${cart.map(i=>`<div class="ri"><span>${i.name} ×${i.qty}</span><span>${(i.price*i.qty).toLocaleString('fr-FR')} FCFA</span></div>`).join('')}
-    <div class="rtotal"><span>TOTAL</span><span>${sub.toLocaleString('fr-FR')} FCFA</span></div>`;
+    <div class="rtotal"><span>TOTAL À PAYER</span><span>${sub.toLocaleString('fr-FR')} FCFA</span></div>`;
 }
 async function processWave() {
   const fn=document.getElementById('wfn').value.trim(), ln=document.getElementById('wln').value.trim();
@@ -492,14 +505,28 @@ async function processWave() {
 /* ════════════════════════════════════════════
    ORANGE MONEY
    ════════════════════════════════════════════ */
-function openOM() { if(!cart.length){toast('Panier vide !');return;} closeCart(); renderOMrecap(); document.getElementById('ommod').classList.add('on'); document.body.style.overflow='hidden'; }
+function openOM() {
+  if(!cart.length){toast('Panier vide !');return;}
+  closeCart();
+  const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
+  renderOMrecap();
+  const omUssd = `*144*1*775399584*${sub}#`;
+  const omLink = `tel:${encodeURIComponent(omUssd)}`;
+  QRCode.toCanvas(document.getElementById('omqr'), omUssd,
+    {width:160, margin:2, color:{dark:'#FF6600',light:'#FFFFFF'}},
+    err => { if(err) console.error('QR OM:', err); }
+  );
+  document.getElementById('om-open-app').href = omLink;
+  document.getElementById('ommod').classList.add('on');
+  document.body.style.overflow='hidden';
+}
 function closeOM() { document.getElementById('ommod').classList.remove('on'); document.body.style.overflow=''; }
 function renderOMrecap() {
   const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
   document.getElementById('omrecap').innerHTML = `
     <div class="recap-t">📋 Récapitulatif</div>
     ${cart.map(i=>`<div class="ri"><span>${i.name} ×${i.qty}</span><span>${(i.price*i.qty).toLocaleString('fr-FR')} FCFA</span></div>`).join('')}
-    <div class="rtotal"><span>TOTAL</span><span>${sub.toLocaleString('fr-FR')} FCFA</span></div>`;
+    <div class="rtotal"><span>TOTAL À PAYER</span><span>${sub.toLocaleString('fr-FR')} FCFA</span></div>`;
 }
 async function processOM() {
   const fn=document.getElementById('omfn').value.trim(), ln=document.getElementById('omln').value.trim();
