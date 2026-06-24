@@ -464,14 +464,13 @@ function openWave() {
   closeCart();
   const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
   renderWrecap();
-  document.getElementById('wmod').classList.add('on');
-  document.body.style.overflow='hidden';
-  const waveLink = `wave://pay?phone=%2B221775399584&amount=${sub}&currency=XOF`;
-  document.getElementById('w-open-app').href = waveLink;
-  try {
-    QRCode.toCanvas(document.getElementById('wqr'), waveLink,
-      {width:160, margin:2, color:{dark:'#1C1C1C',light:'#FFFFFF'}});
-  } catch(e) { document.getElementById('wqr').style.display='none'; }
+  setTimeout(() => {
+    const waveLink = `wave://pay?phone=%2B221775399584&amount=${sub}&currency=XOF`;
+    document.getElementById('w-open-app').href = waveLink;
+    document.getElementById('wqr-img').src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(waveLink)}&size=150x150&margin=8`;
+    document.getElementById('wmod').classList.add('on');
+    document.body.style.overflow='hidden';
+  }, 50);
 }
 function closeWave() { document.getElementById('wmod').classList.remove('on'); document.body.style.overflow=''; }
 function renderWrecap() {
@@ -510,14 +509,13 @@ function openOM() {
   closeCart();
   const sub = cart.reduce((a,i)=>a+i.price*i.qty,0);
   renderOMrecap();
-  document.getElementById('ommod').classList.add('on');
-  document.body.style.overflow='hidden';
-  const omUssd = `*144*1*775399584*${sub}#`;
-  document.getElementById('om-open-app').href = `tel:${encodeURIComponent(omUssd)}`;
-  try {
-    QRCode.toCanvas(document.getElementById('omqr'), omUssd,
-      {width:160, margin:2, color:{dark:'#FF6600',light:'#FFFFFF'}});
-  } catch(e) { document.getElementById('omqr').style.display='none'; }
+  setTimeout(() => {
+    const omUssd = `*144*1*775399584*${sub}#`;
+    document.getElementById('om-open-app').href = `tel:${encodeURIComponent(omUssd)}`;
+    document.getElementById('omqr-img').src = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(omUssd)}&size=150x150&margin=8&color=FF6600`;
+    document.getElementById('ommod').classList.add('on');
+    document.body.style.overflow='hidden';
+  }, 50);
 }
 function closeOM() { document.getElementById('ommod').classList.remove('on'); document.body.style.overflow=''; }
 function renderOMrecap() {
