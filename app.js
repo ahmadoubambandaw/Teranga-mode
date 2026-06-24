@@ -496,7 +496,7 @@ async function processWave() {
   document.getElementById('succmsg').innerHTML = `Merci <b>${fn} ${ln}</b> !<br>Commande de <b>${sub.toLocaleString('fr-FR')} FCFA</b> enregistrée.<br><br>📦 Livraison : <b>${adr}, ${cit}</b><br>📱 Wave : <b>${ph}</b><br><br>Notre équipe vous contacte sous 30 min.`;
   document.getElementById('succmod').classList.add('on');
   let msg=`🆕 *COMMANDE WAVE — TERANGA SHEIN*\n━━━━━━━━━━━━━━━━━━━━\n👤 ${fn} ${ln}\n📞 Wave: ${ph}\n📍 ${adr}, ${cit}\n\n`;
-  cart.forEach(i=>msg+=`• ${i.name} ×${i.qty} = ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n`);
+  cart.forEach(i=>msg+=`• ${i.name} ×${i.qty} = ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n  📸 https://terangashein.sn/${i.imgs[0]}\n`);
   msg+=`\n💳 TOTAL: ${sub.toLocaleString('fr-FR')} FCFA`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   cart=[]; saveCart(); updCart();
@@ -541,7 +541,7 @@ async function processOM() {
   document.getElementById('succmsg').innerHTML = `Merci <b>${fn} ${ln}</b> !<br>Commande de <b>${sub.toLocaleString('fr-FR')} FCFA</b> enregistrée.<br><br>📦 Livraison : <b>${adr}, ${cit}</b><br>📱 Orange Money : <b>${ph}</b><br><br>Notre équipe vous contacte sous 30 min.`;
   document.getElementById('succmod').classList.add('on');
   let msg=`🆕 *COMMANDE ORANGE MONEY — TERANGA SHEIN*\n━━━━━━━━━━━━━━━━━━━━\n👤 ${fn} ${ln}\n📞 OM: ${ph}\n📍 ${adr}, ${cit}\n\n`;
-  cart.forEach(i=>msg+=`• ${i.name} ×${i.qty} = ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n`);
+  cart.forEach(i=>msg+=`• ${i.name} ×${i.qty} = ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n  📸 https://terangashein.sn/${i.imgs[0]}\n`);
   msg+=`\n🟠 TOTAL: ${sub.toLocaleString('fr-FR')} FCFA`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   cart=[]; saveCart(); updCart();
@@ -551,7 +551,7 @@ function sendWA() {
   if(!cart.length){toast('Panier vide !');return;}
   const sub=cart.reduce((a,i)=>a+i.price*i.qty,0);
   let msg=`🛍 *COMMANDE — TERANGA SHEIN*\n━━━━━━━━━━━━━━━━━━━━\n\n📦 *ARTICLES*\n`;
-  cart.forEach(i=>msg+=`${i.name} ×${i.qty} · ${i.cat}\n   ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n`);
+  cart.forEach(i=>msg+=`${i.name} ×${i.qty} · ${i.cat}\n   ${(i.price*i.qty).toLocaleString('fr-FR')} FCFA\n   📸 https://terangashein.sn/${i.imgs[0]}\n`);
   msg+=`\n*💳 TOTAL: ${sub.toLocaleString('fr-FR')} FCFA*\n💵 1$=650 FCFA · Sans frais · Livraison 10–20j`;
   window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
   closeCart();
