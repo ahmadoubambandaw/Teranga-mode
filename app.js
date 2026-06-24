@@ -181,10 +181,10 @@ function heroUpdate() {
 function renderCats() {
   document.getElementById('catcards').innerHTML = cats.map(c => {
     const cnt = c.name === 'Nouveautés' ? prods.filter(p => p.badge === 'new').length
-              : c.name === 'Promo'      ? prods.filter(p => p.old).length
+              : c.name === 'Promo'      ? prods.filter(p => p.badge === 'sale').length
               : prods.filter(p => p.cat === c.name).length;
     return `<button class="cat-circle" onclick="navTo('${c.nav}')">
-      <div class="cc-img"><img src="${c.img}" alt="${c.name}" loading="lazy"></div>
+      <div class="cc-img"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.src='images/sac-brown-handbag.jpg'"></div>
       <div class="cc-name">${c.name}</div>
       <div class="cc-cnt">${cnt} articles</div>
     </button>`;
@@ -209,7 +209,7 @@ function renderGrid(gridId, list) {
     const inW = wish.includes(p.id);
     return `<div class="pcard" onclick="openP(${p.id})">
       <div class="pcimg">
-        <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy">
+        <img src="${p.imgs[0]}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='images/sac-brown-handbag.jpg'">
         <div class="pcbadges">
           ${p.badge==='new'  ? '<span class="pb pb-new">Nouveau</span>'    : ''}
           ${p.badge==='sale' ? '<span class="pb pb-sale">Promo</span>'     : ''}
@@ -247,7 +247,7 @@ function renderHome() {
 function sortCat(slug, by) {
   let list;
   if      (slug === 'new')     list = prods.filter(p => p.badge === 'new');
-  else if (slug === 'promo')   list = prods.filter(p => p.old);
+  else if (slug === 'promo')   list = prods.filter(p => p.badge === 'sale');
   else if (slug === 'top')     list = prods.filter(p => p.badge === 'hot' || p.stars >= 4.6);
   else list = prods.filter(p => p.cat === slug.charAt(0).toUpperCase() + slug.slice(1));
   if (by === 'price-asc')  list.sort((a,b) => a.price - b.price);
@@ -300,7 +300,7 @@ function navTo(pgId) {
       renderGrid('pgrid-lunettes', list);
     },
     'pg-promo': () => {
-      const list = prods.filter(p => p.old);
+      const list = prods.filter(p => p.badge === 'sale');
       const lbl = document.getElementById('lbl-promo');
       if (lbl) lbl.textContent = list.length + ' article' + (list.length>1?'s':'') + ' en promo';
       renderGrid('pgrid-promo', list);
@@ -337,9 +337,9 @@ function openP(id) {
   // Galerie : image principale + miniatures si plusieurs photos
   document.getElementById('pmimgs').innerHTML = `
     <div class="pmgal">
-      <div class="pmgal-main"><img id="pmMainImg" src="${p.imgs[0]}" alt="${p.name}"></div>
+      <div class="pmgal-main"><img id="pmMainImg" src="${p.imgs[0]}" alt="${p.name}" onerror="this.onerror=null;this.src='images/sac-brown-handbag.jpg'"></div>
       ${p.imgs.length>1 ? `<div class="pmgal-thumbs">
-        ${p.imgs.map((src,i)=>`<button class="pmthumb${i===0?' on':''}" onclick="swapPmImg('${src}',this)"><img src="${src}" alt=""></button>`).join('')}
+        ${p.imgs.map((src,i)=>`<button class="pmthumb${i===0?' on':''}" onclick="swapPmImg('${src}',this)"><img src="${src}" alt="" onerror="this.onerror=null;this.src='images/sac-brown-handbag.jpg'"></button>`).join('')}
       </div>` : ''}
     </div>`;
   const stockTxt = p.stock<=1 ? `<span class="pmstock low">⚠ Dernière pièce disponible</span>`
