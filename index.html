@@ -42,7 +42,6 @@
   import { animate, stagger, inView } from "https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm";
   window.motionOne = { animate, stagger, inView };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -541,7 +540,7 @@
     <div class="pay-section">
       <div class="pay-step-label"><span class="psl-n wave-n">1</span> Envoie le paiement</div>
       <div class="qr-pay-block">
-        <canvas id="wqr"></canvas>
+        <img id="wqr-img" class="qr-img" alt="QR Wave">
         <div class="qr-or">ou</div>
         <a id="w-open-app" class="btn btn-wave pay-app-btn" href="#" target="_blank">📲 Ouvrir Wave et payer</a>
         <div class="qr-hint">Scanner le QR avec l'app Wave · montant pré-rempli</div>
@@ -577,7 +576,7 @@
     <div class="pay-section">
       <div class="pay-step-label"><span class="psl-n om-n">1</span> Envoie le paiement</div>
       <div class="qr-pay-block">
-        <canvas id="omqr"></canvas>
+        <img id="omqr-img" class="qr-img" alt="QR Orange Money">
         <div class="qr-or">ou</div>
         <a id="om-open-app" class="btn btn-om pay-app-btn" href="#" target="_blank">📲 Composer le code Orange Money</a>
         <div class="qr-hint">Scanner le QR avec l'app OM · ou appuie sur le bouton</div>
