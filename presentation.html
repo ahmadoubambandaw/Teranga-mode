@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport — Teranga Shein</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #fff; }
+
+  .cover {
+    background: linear-gradient(135deg, #e91e8c 0%, #ff6b35 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    page-break-after: always;
+  }
+  .cover .logo { font-size: 64px; margin-bottom: 20px; }
+  .cover h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+  .cover .tagline { font-size: 20px; opacity: 0.9; margin-bottom: 40px; }
+  .cover .divider { width: 80px; height: 4px; background: rgba(255,255,255,0.5); margin: 0 auto 40px; border-radius: 2px; }
+  .cover .subtitle { font-size: 16px; opacity: 0.85; line-height: 1.6; max-width: 500px; }
+  .cover .date { margin-top: 60px; font-size: 14px; opacity: 0.7; }
+
+  .section {
+    padding: 60px 60px 40px;
+    page-break-inside: avoid;
+  }
+  .section-alt { background: #fafafa; }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #e91e8c;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #e91e8c;
+  }
+  .section-title .icon { font-size: 32px; }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .card .card-icon { font-size: 32px; margin-bottom: 12px; }
+  .card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; }
+  .card p { font-size: 14px; color: #555; line-height: 1.6; }
+
+  .check-list { list-style: none; }
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.5;
+  }
+  .check-list li:last-child { border-bottom: none; }
+  .check-list .tick { color: #22c55e; font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+  .link-box {
+    background: #1a1a1a;
+    color: white;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .link-box .lb-icon { font-size: 24px; flex-shrink: 0; }
+  .link-box .lb-label { font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; }
+  .link-box .lb-url { font-size: 16px; font-weight: 600; color: #fff; word-break: break-all; }
+
+  .step-list { list-style: none; counter-reset: step; }
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    counter-increment: step;
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #e91e8c, #ff6b35);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .step-list li .step-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .step-list li .step-content p { font-size: 14px; color: #666; line-height: 1.5; }
+
+  .badge {
+    display: inline-block;
+    background: #e91e8c;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge.green { background: #22c55e; }
+  .badge.orange { background: #ff6b35; }
+
+  .info-box {
+    background: linear-gradient(135deg, #fff0f7, #fff7f0);
+    border-left: 4px solid #e91e8c;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .info-box p { font-size: 15px; color: #444; line-height: 1.7; }
+
+  .footer-section {
+    background: linear-gradient(135deg, #e91e8c 0%, #ff6b35 100%);
+    color: white;
+    padding: 60px;
+    text-align: center;
+    page-break-before: always;
+  }
+  .footer-section h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+  .footer-section p { font-size: 16px; opacity: 0.9; line-height: 1.7; max-width: 500px; margin: 0 auto 40px; }
+  .footer-contacts {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .footer-contact { text-align: center; }
+  .footer-contact .fc-icon { font-size: 28px; margin-bottom: 8px; }
+  .footer-contact .fc-label { font-size: 12px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .footer-contact .fc-value { font-size: 15px; font-weight: 600; }
+
+  @media print {
+    .cover { min-height: 100vh; }
+    .section { page-break-inside: avoid; }
+    @page { margin: 0; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE DE COUVERTURE -->
+<div class="cover">
+  <div class="logo">👗</div>
+  <h1>TERANGA SHEIN</h1>
+  <div class="tagline">Accessoires femme · Dakar, Sénégal</div>
+  <div class="divider"></div>
+  <p class="subtitle">Rapport de livraison du site e-commerce<br>Toutes les fonctionnalités, liens et guides d'utilisation</p>
+  <div class="date">24 juin 2026</div>
+</div>
+
+<!-- RÉSUMÉ DU PROJET -->
+<div class="section">
+  <div class="section-title"><span class="icon">🎯</span> Le projet en résumé</div>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>Site e-commerce</h3>
+      <p>Boutique en ligne complète avec catalogue produits, panier, et paiement intégré. Accessible depuis mobile et ordinateur.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💳</div>
+      <h3>Paiements sénégalais</h3>
+      <p>Wave et Orange Money intégrés avec QR code et lien de paiement direct. Le montant exact du panier est pré-rempli.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Commandes WhatsApp</h3>
+      <p>Les clientes envoient leur commande en un clic sur WhatsApp avec le détail et les photos des produits commandés.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Référencement Google</h3>
+      <p>Site indexé sur Google, sitemap soumis, Google Business Profile configuré pour la visibilité locale à Dakar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIENS IMPORTANTS -->
+<div class="section section-alt">
+  <div class="section-title"><span class="icon">🔗</span> Liens importants</div>
+
+  <div class="link-box">
+    <div class="lb-icon">🌍</div>
+    <div>
+      <div class="lb-label">Site web</div>
+      <div class="lb-url">https://terangashein.com</div>
+    </div>
+  </div>
+
+  <div class="link-box">
+    <div class="lb-icon">📱</div>
+    <div>
+      <div class="lb-label">WhatsApp business</div>
+      <div class="lb-url">https://wa.me/221775399584</div>
+    </div>
+  </div>
+
+  <div class="link-box">
+    <div class="lb-icon">📊</div>
+    <div>
+      <div class="lb-label">Google Search Console (statistiques SEO)</div>
+      <div class="lb-url">search.google.com/search-console</div>
+    </div>
+  </div>
+
+  <div class="link-box">
+    <div class="lb-icon">🗺️</div>
+    <div>
+      <div class="lb-label">Google Business Profile (fiche locale)</div>
+      <div class="lb-url">business.google.com</div>
+    </div>
+  </div>
+
+  <div class="link-box">
+    <div class="lb-icon">⚡</div>
+    <div>
+      <div class="lb-label">Hébergement Netlify (déploiement)</div>
+      <div class="lb-url">app.netlify.com/projects/terangashein</div>
+    </div>
+  </div>
+</div>
+
+<!-- FONCTIONNALITÉS -->
+<div class="section">
+  <div class="section-title"><span class="icon">✅</span> Fonctionnalités livrées</div>
+  <ul class="check-list">
+    <li><span class="tick">✅</span> <span><strong>Catalogue produits</strong> — Affichage des produits avec photos, prix, catégories et tailles disponibles</span></li>
+    <li><span class="tick">✅</span> <span><strong>Panier d'achat</strong> — Ajout, suppression, modification des quantités en temps réel</span></li>
+    <li><span class="tick">✅</span> <span><strong>Paiement Wave</strong> — Modal avec QR code et lien direct vers l'app Wave, montant pré-rempli automatiquement</span></li>
+    <li><span class="tick">✅</span> <span><strong>Paiement Orange Money</strong> — Modal avec QR code et lien USSD, montant pré-rempli automatiquement</span></li>
+    <li><span class="tick">✅</span> <span><strong>Commande WhatsApp</strong> — Message automatique avec détail des articles, prix total et photos des produits</span></li>
+    <li><span class="tick">✅</span> <span><strong>Design responsive</strong> — Site adapté mobile, tablette et ordinateur</span></li>
+    <li><span class="tick">✅</span> <span><strong>Domaine personnalisé</strong> — terangashein.com connecté et sécurisé HTTPS</span></li>
+    <li><span class="tick">✅</span> <span><strong>Hébergement gratuit</strong> — Déployé sur Netlify, déploiement automatique depuis GitHub</span></li>
+    <li><span class="tick">✅</span> <span><strong>SEO technique</strong> — robots.txt, sitemap.xml, balises meta, Open Graph pour les réseaux sociaux</span></li>
+    <li><span class="tick">✅</span> <span><strong>Google Search Console</strong> — Site vérifié, sitemap soumis, indexation demandée</span></li>
+    <li><span class="tick">✅</span> <span><strong>Google Business Profile</strong> — Fiche Google configurée pour les recherches locales à Dakar</span></li>
+    <li><span class="tick">✅</span> <span><strong>Sécurité</strong> — En-têtes de sécurité configurés (anti-clickjacking, HTTPS strict)</span></li>
+  </ul>
+</div>
+
+<!-- GUIDE D'UTILISATION -->
+<div class="section section-alt">
+  <div class="section-title"><span class="icon">📖</span> Comment utiliser le site</div>
+
+  <div style="margin-bottom: 32px;">
+    <h3 style="font-size:18px; margin-bottom:16px; color:#e91e8c;">Pour les clientes :</h3>
+    <ol class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Parcourir le catalogue</h4>
+          <p>Les clientes visitent terangashein.com et voient tous les produits disponibles avec photos et prix.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Ajouter au panier</h4>
+          <p>Elles cliquent sur "Ajouter au panier" pour chaque article voulu. Le panier s'affiche en bas de l'écran.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Choisir le paiement</h4>
+          <p>Depuis le panier, elles choisissent Wave, Orange Money, ou WhatsApp pour finaliser leur commande.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Payer et confirmer</h4>
+          <p>Le montant exact est pré-rempli. Elles scannent le QR code ou cliquent le lien pour payer directement.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div>
+    <h3 style="font-size:18px; margin-bottom:16px; color:#e91e8c;">Pour Teranga (recevoir les commandes) :</h3>
+    <ul class="check-list">
+      <li><span class="tick">📱</span> <span>Les commandes WhatsApp arrivent sur le numéro <strong>+221 77 539 95 84</strong> avec le détail complet et les photos des articles</span></li>
+      <li><span class="tick">💸</span> <span>Les paiements Wave arrivent directement sur le compte Wave <strong>+221 77 539 95 84</strong></span></li>
+      <li><span class="tick">🟠</span> <span>Les paiements Orange Money arrivent sur le compte Orange Money <strong>+221 77 539 95 84</strong></span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- AJOUTER DES PRODUITS -->
+<div class="section">
+  <div class="section-title"><span class="icon">🛍️</span> Ajouter ou modifier des produits</div>
+  <div class="info-box">
+    <p>Les produits sont gérés dans le fichier <strong>app.js</strong> sur GitHub. Pour ajouter un nouveau produit, il faut modifier ce fichier. Chaque produit contient : nom, prix, catégorie, taille(s), et photos.</p>
+  </div>
+  <ol class="step-list">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Ouvrir GitHub</h4>
+        <p>Aller sur github.com/ahmadoubambandaw/Terangashein → fichier app.js</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Ajouter la photo</h4>
+        <p>Téléverser la photo du produit dans le dossier /images/ sur GitHub</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Ajouter le produit</h4>
+        <p>Copier un produit existant dans app.js, modifier le nom, prix, catégorie et lien photo</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Déploiement automatique</h4>
+        <p>Après sauvegarde sur GitHub, Netlify redéploie automatiquement en 1-2 minutes</p>
+      </div>
+    </li>
+  </ol>
+</div>
+
+<!-- PAGE DE FIN -->
+<div class="footer-section">
+  <h2>Site livré avec succès ✨</h2>
+  <p>Teranga Shein est maintenant en ligne, indexé sur Google et prêt à recevoir des commandes.</p>
+
+  <div class="footer-contacts">
+    <div class="footer-contact">
+      <div class="fc-icon">🌍</div>
+      <div class="fc-label">Site</div>
+      <div class="fc-value">terangashein.com</div>
+    </div>
+    <div class="footer-contact">
+      <div class="fc-icon">📱</div>
+      <div class="fc-label">WhatsApp</div>
+      <div class="fc-value">+221 77 539 95 84</div>
+    </div>
+    <div class="footer-contact">
+      <div class="fc-icon">📅</div>
+      <div class="fc-label">Date de livraison</div>
+      <div class="fc-value">24 juin 2026</div>
+    </div>
+  </div>
+
+  <p style="font-size:14px; opacity:0.7; margin:0;">Pour toute modification ou assistance, contacter le développeur.</p>
+</div>
+
+</body>
+</html>

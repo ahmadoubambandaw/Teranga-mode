@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facture — Ndaw-Tech</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a1a; background: #f4f4f4; }
+
+  .page {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  /* HEADER */
+  .header {
+    background: #0f172a;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand h1 { color: white; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .brand h1 span { color: #e91e8c; }
+  .brand p { color: #94a3b8; font-size: 13px; margin-top: 4px; }
+  .invoice-badge {
+    text-align: right;
+  }
+  .invoice-badge .label { color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .invoice-badge .number { color: white; font-size: 22px; font-weight: 700; margin-top: 4px; }
+
+  /* BAND */
+  .band {
+    background: #e91e8c;
+    height: 4px;
+  }
+
+  /* META */
+  .meta {
+    padding: 36px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .meta-block h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 8px; }
+  .meta-block p { font-size: 15px; color: #1a1a1a; line-height: 1.7; }
+  .meta-block strong { font-weight: 700; }
+
+  .status-badge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* TABLE */
+  .table-wrap { padding: 36px 48px; }
+  .table-wrap h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { background: #f8fafc; }
+  thead th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    padding: 12px 16px;
+    font-weight: 600;
+  }
+  thead th:last-child { text-align: right; }
+
+  tbody tr { border-bottom: 1px solid #f1f5f9; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody td { padding: 16px; font-size: 14px; color: #334155; vertical-align: top; }
+  tbody td:last-child { text-align: right; font-weight: 600; color: #1a1a1a; }
+
+  .item-name { font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .item-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+  /* TOTALS */
+  .totals {
+    padding: 0 48px 36px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .totals-box { width: 280px; }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #475569;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .total-row:last-child {
+    border-bottom: none;
+    padding-top: 16px;
+    margin-top: 4px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  /* SERVICES LIVRES */
+  .delivered {
+    padding: 0 48px 36px;
+  }
+  .delivered h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    margin-bottom: 16px;
+  }
+  .delivered-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .delivered-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #334155;
+    background: #f8fafc;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  .delivered-item .di-icon { font-size: 16px; }
+
+  /* MESSAGE */
+  .message {
+    margin: 0 48px 36px;
+    background: #f8fafc;
+    border-left: 3px solid #e91e8c;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+  }
+  .message p { font-size: 14px; color: #475569; line-height: 1.8; }
+
+  /* FOOTER */
+  .footer {
+    background: #0f172a;
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer p { color: #64748b; font-size: 13px; }
+  .footer .thanks { color: white; font-size: 14px; font-weight: 600; }
+
+  @media print {
+    body { background: white; }
+    .page { margin: 0; border-radius: 0; box-shadow: none; max-width: 100%; }
+    @page { margin: 0; size: A4; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <h1>Ndaw<span>-Tech</span></h1>
+      <p>Développement web · Solutions digitales</p>
+    </div>
+    <div class="invoice-badge">
+      <div class="label">Facture</div>
+      <div class="number">#NT-2026-001</div>
+    </div>
+  </div>
+  <div class="band"></div>
+
+  <!-- META -->
+  <div class="meta">
+    <div class="meta-block">
+      <h3>Facturé à</h3>
+      <p><strong>Teranga Shein</strong><br>Dakar, Sénégal<br>+221 77 539 95 84<br>terangashein.com</p>
+    </div>
+    <div class="meta-block" style="text-align:center;">
+      <h3>Date</h3>
+      <p>24 juin 2026</p>
+      <br>
+      <span class="status-badge">✓ LIVRÉ</span>
+    </div>
+    <div class="meta-block" style="text-align:right;">
+      <h3>Émis par</h3>
+      <p><strong>Ndaw-Tech</strong><br>Dakar, Sénégal</p>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <h3>Détail des prestations</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:55%">Prestation</th>
+          <th style="width:15%">Qté</th>
+          <th style="width:30%">Montant</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="item-name">🌐 Création du site e-commerce</div>
+            <div class="item-desc">Design, développement complet du site Teranga Shein — catalogue produits, panier, design responsive mobile/ordinateur</div>
+          </td>
+          <td>1</td>
+          <td>50 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">💳 Intégration des paiements</div>
+            <div class="item-desc">Wave et Orange Money avec QR code et montant pré-rempli automatiquement depuis le panier</div>
+          </td>
+          <td>1</td>
+          <td>45 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">📱 Système de commande WhatsApp</div>
+            <div class="item-desc">Message automatique avec détail des articles, prix et photos des produits commandés</div>
+          </td>
+          <td>1</td>
+          <td>25 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">🌍 Mise en ligne & domaine</div>
+            <div class="item-desc">Déploiement du site, configuration du domaine terangashein.com avec certificat HTTPS sécurisé</div>
+          </td>
+          <td>1</td>
+          <td>20 000 FCFA</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="item-name">🔍 Référencement Google (SEO)</div>
+            <div class="item-desc">Google Search Console, sitemap, robots.txt, balises meta, Google Business Profile pour la visibilité locale à Dakar</div>
+          </td>
+          <td>1</td>
+          <td>25 000 FCFA</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOTALS -->
+  <div class="totals">
+    <div class="totals-box">
+      <div class="total-row"><span>Création du site</span><span>50 000 FCFA</span></div>
+      <div class="total-row"><span>Intégration paiements</span><span>45 000 FCFA</span></div>
+      <div class="total-row"><span>Commande WhatsApp</span><span>25 000 FCFA</span></div>
+      <div class="total-row"><span>Mise en ligne &amp; domaine</span><span>20 000 FCFA</span></div>
+      <div class="total-row"><span>Référencement Google</span><span>25 000 FCFA</span></div>
+      <div class="total-row"><span><strong>TOTAL</strong></span><span><strong>165 000 FCFA</strong></span></div>
+    </div>
+  </div>
+
+  <!-- SERVICES LIVRÉS -->
+  <div class="delivered">
+    <h3>Fonctionnalités livrées</h3>
+    <div class="delivered-grid">
+      <div class="delivered-item"><span class="di-icon">✅</span> Catalogue produits avec photos</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Panier d'achat interactif</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Paiement Wave + QR code</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Paiement Orange Money + QR code</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Commandes WhatsApp avec photos</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Design mobile & ordinateur</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Domaine terangashein.com HTTPS</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Indexation Google Search Console</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Google Business Profile Dakar</div>
+      <div class="delivered-item"><span class="di-icon">✅</span> Sécurité & performance optimisées</div>
+    </div>
+  </div>
+
+  <!-- MESSAGE -->
+  <div class="message">
+    <p>Tous les services ont été livrés et sont pleinement opérationnels. Le site <strong>terangashein.com</strong> est en ligne, indexé sur Google et prêt à recevoir des commandes. Pour toute modification ou assistance, n'hésitez pas à nous contacter.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Ndaw-Tech · Dakar, Sénégal</p>
+    <p class="thanks">Merci de votre confiance 🙏</p>
+  </div>
+
+</div>
+</body>
+</html>
