@@ -1124,13 +1124,20 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
   .logo-badge{width:36px;height:36px}
   .logo-name{font-size:15px;letter-spacing:.08em}
   .nav-icons{gap:.9rem}
-  .hero{height:85vh;min-height:480px}
-  .slide-content{padding:0 1.2rem}
-  .slide-title{font-size:2.1rem;max-width:100%}
-  .slide-sub{font-size:13px;margin-bottom:1.6rem}
-  .slide-ctas{flex-direction:column;gap:10px}
-  .slide-ctas .btn{width:100%;justify-content:center}
+  .hero{height:100svh;min-height:580px}
+  .slide{align-items:flex-end}
+  .slide-bg{background-position:center top}
+  .slide-bg::after{background:linear-gradient(to top,rgba(26,20,16,.95) 0%,rgba(26,20,16,.6) 38%,rgba(26,20,16,.15) 65%,transparent 100%)}
+  .slide-content{padding:0 1.4rem 3.2rem;width:100%}
+  .slide-tag{font-size:9px;letter-spacing:.18em;margin-bottom:1rem}
+  .slide-title{font-size:2.6rem;max-width:100%;text-align:left;line-height:1.05}
+  .slide-title em{font-size:2rem}
+  .slide-sub{font-size:12.5px;margin-bottom:1.6rem;max-width:100%;color:rgba(255,255,255,.65)}
+  .slide-ctas{flex-direction:column;gap:10px;width:100%}
+  .slide-ctas .btn{width:100%;justify-content:center;padding:16px}
   .slide-arr{display:none}
+  .slide-dots{bottom:1.4rem}
+  .slide-counter{display:none}
   .sec{padding:3rem 1.2rem}
   .sec-h{font-size:1.8rem}
   .toolbar{padding:1rem 1.2rem 0;flex-direction:column;align-items:flex-start;gap:.7rem}
