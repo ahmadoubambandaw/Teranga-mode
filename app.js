@@ -82,7 +82,7 @@ const prods = [
    colors:['#5B3A29'], stars:4.8, rev:41,
    desc:"Grand cabas marron en cuir vegan + pochette assortie incluse. Foulard satiné décoratif offert. Spacieux et chic, parfait pour le quotidien comme le bureau."},
 
-  {id:14, name:'Sac Low Tea Noeud', cat:'Sacs', price:8000, old:null, stock:2,
+  {id:14, name:'Sac Low Tea Noeud', cat:'Sacs', price:9000, old:null, stock:2,
    imgs:['images/sac-lowtea-1.jpg','images/sac-lowtea-2.jpg'], badge:'new',
    colors:['#6B1A2C'], stars:4.9, rev:19,
    desc:"Sac à main bordeaux effet noeud avec anneau doré signature. Cuir vegan souple, forme tendance et féminine. Élégance moderne pour vos sorties."},
