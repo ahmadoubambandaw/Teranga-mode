@@ -1124,9 +1124,10 @@ footer{background:var(--ink);padding:5rem 2.5rem 2rem}
   .logo-badge{width:36px;height:36px}
   .logo-name{font-size:15px;letter-spacing:.08em}
   .nav-icons{gap:.9rem}
-  .hero{height:100svh;min-height:580px}
-  .slide{align-items:flex-end}
-  .slide-bg{background-position:center top}
+  .hero{height:100svh;min-height:580px;overflow:hidden}
+  .slides{width:100%;flex-shrink:0}
+  .slide{align-items:flex-end;overflow:hidden}
+  .slide-bg{background-position:center center;background-size:cover}
   .slide-bg::after{background:linear-gradient(to top,rgba(26,20,16,.95) 0%,rgba(26,20,16,.6) 38%,rgba(26,20,16,.15) 65%,transparent 100%)}
   .slide-content{padding:0 1.4rem 3.2rem;width:100%}
   .slide-tag{font-size:9px;letter-spacing:.18em;margin-bottom:1rem}
